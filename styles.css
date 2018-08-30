@@ -1,0 +1,9 @@
+.background-color {
+  fill: #eee
+}
+
+.inner-border {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.1
+}

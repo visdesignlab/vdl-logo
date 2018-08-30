@@ -6,10 +6,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Logo</title>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
 
+  <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" x="0px" y="0px" viewBox="0 0 62 62">
+    <g id="Layer_2">
+      <rect class="background-color" width="62" height="62" x="0" y="0" />
+    </g>
+    <g id="Layer_1">
+      <g class="flask">
+        <path fill="#2C3E50" d="M31,60.5c-10.6,0-19.2-8.6-19.2-19.2C11.8,32.9,17,25.6,25,23V12.4h-1.1c-0.7,0-1.2-0.5-1.2-1.2V9.6
+				c0-0.7,0.5-1.2,1.2-1.2h14.2c0.7,0,1.2,0.5,1.2,1.2v1.6c0,0.7-0.5,1.2-1.2,1.2H37V23c7.9,2.6,13.2,9.9,13.2,18.3
+				C50.2,51.9,41.6,60.5,31,60.5z M23.9,9.5c-0.1,0-0.2,0.1-0.2,0.2v1.6c0,0.1,0.1,0.2,0.2,0.2h1.6c0.3,0,0.5,0.2,0.5,0.5v11.4
+				c0,0.2-0.1,0.4-0.4,0.5c-7.7,2.4-12.8,9.4-12.8,17.4c0,10.1,8.2,18.2,18.2,18.2c10.1,0,18.2-8.2,18.2-18.2
+				c0-8-5.2-15.1-12.8-17.4c-0.2-0.1-0.4-0.3-0.4-0.5V11.9c0-0.3,0.2-0.5,0.5-0.5h1.6c0.1,0,0.2-0.1,0.2-0.2V9.6
+				c0-0.1-0.1-0.2-0.2-0.2H23.9z" />
+      </g>
+
+      <clipPath id="clipper">
+        <path class="inner-border" d="
+                       M23.9,9.4
+                       v0.1
+                       c-0.1,0-0.2,0.1-0.2,0.2
+                       v1.6
+                       c0,0.1,0.1,0.2,0.2,0.2
+                       h1.6
+                       c0.3,0,0.5,0.2,0.5,0.5
+                       v11.4
+                       c0,0.2-0.1,0.4-0.4,0.5
+                       c-7.7,2.4-12.8,9.4-12.8,17.4
+                       c0,10.1,8.2,18.2,18.2,18.2
+                       c10.1,0,18.2-8.2,18.2-18.2
+                       c0-8-5.2-15.1-12.8-17.4
+                       c-0.2-0.1-0.4-0.3-0.4-0.5
+                       V11.9
+                       c0-0.3,0.2-0.5,0.5-0.5
+                       h1.6
+                       c0.1,0,0.2-0.1,0.2-0.2
+                       V9.6
+                       c0-0.1-0.1-0.2-0.2-0.2
+                       z" />
+      </clipPath>
+
+      <g clip-path="url(#clipper)">
+        <g class="flask2" transform="translate(14, 40)">
+          <rect x="0" y="0" width="10" height="100" transform="translate(0,8)" />
+          <rect x="12" y="0" width="10" height="100" transform="translate(0,12)" />
+          <rect x="24" y="0" width="10" height="100" transform="translate(0,3)" />
+        </g>
+      </g>
+
+
+    </g>
+  </svg>
+
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
