@@ -12,7 +12,7 @@ d3.select('svg').on('mouseover', () => {
     animateBubble(...addBubble(leftSource), 'left');
     animateBubble(...addBubble(midSource), 'mid');
     animateBubble(...addBubble(rightSource), 'right');
-  }, 500);
+  }, 200);
 }).on('mouseout', () => {
   clearInterval(loop);
 })
