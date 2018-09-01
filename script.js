@@ -2,41 +2,44 @@ let leftSource = d3.select('.left-source');
 let midSource = d3.select('.mid-source');
 let rightSource = d3.select('.right-source');
 
-let bubble = addBubble(leftSource);
-addBubble(midSource);
-addBubble(rightSource);
-
-animateBubble(bubble, 'left');
+setInterval(() => {
+  animateBubble(...addBubble(leftSource), 'left');
+  animateBubble(...addBubble(midSource), 'mid')
+  animateBubble(...addBubble(rightSource), 'right')
+}, 2000)
 
 function addBubble(source) {
-  return source.append('circle').attr('r', 1)
+  let xShift = shiftRandom();
+  return [source.append('circle').attr('r', 1).attr('transform', `translate(${xShift}, 0)`), xShift];
 }
 
-function animateBubble(bubble, position) {
-  let points = getPoints(position);
+function shiftRandom() {
+  let pos = Math.random() > 0.5;
+  let a = Math.random() * 10;
+  while (a > 5 && a < 1) {
+    a = Math.random() * 10;
+  }
+  if (pos)
+    return a;
+  return -a;
+}
 
+function animateBubble(bubble, xShift, position) {
+  let points = getPoints(position, xShift);
   let path = getPath(points, position);
-
-  bubble.transition().duration(sToMs(7)).attrTween('transform', translateAlongPath(path.node())).remove();
-}
-
-function getPoints(position) {
-  let points = [
-    [0, 0]
-  ]
-
-  points.push(...[
-    [10 / 2, -30 / 2],
-    [20 / 2, -60 / 2],
-    [40 / 2, -50 / 2],
-    [50 / 2, -80 / 2]
-  ])
-
-  return points;
+  bubble.transition().duration(sToMs(getRandomTime())).attrTween('transform', translateAlongPath(path.node())).remove();
 }
 
 function getPath(points, location) {
   return d3.select('svg').append('path').attr('class', `random-path ${location}`).datum(points).attr('d', d3.line().x(d => d[0]).y(d => d[1]).curve(d3.curveBasis))
+}
+
+function getRandomTime() {
+  let a = Math.random() * 10;
+  while (a < 10 && a > 15) {
+    a = Math.random() * 10;
+  }
+  return a;
 }
 
 function sToMs(s) {
@@ -45,11 +48,29 @@ function sToMs(s) {
 
 function translateAlongPath(path) {
   let l = path.getTotalLength();
-  console.log(l)
   return function (d, i, a) {
     return function (t) {
       let p = path.getPointAtLength(t * l);
-      return `translate(${p.x},${p.y})`
+      return `translate(${p.x}, ${p.y})`;
     }
   }
+}
+
+function getPoints(position, xShift) {
+  let points = [
+    [xShift, 0]
+  ]
+  points.push(...[
+    [0, -30 / 2],
+    [3, -60 / 2],
+    [40 / 2, -50 / 2],
+    [50 / 2, -80 / 2],
+    [40 / 2, -50 / 2],
+    [20 / 2, -60 / 2],
+    [30 / 2, -70 / 2],
+    [50 / 2, -80 / 2],
+    [80 / 2, -90 / 2],
+    [10 / 2, -100 / 2],
+  ])
+  return points;
 }
