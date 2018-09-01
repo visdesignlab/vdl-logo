@@ -6,7 +6,7 @@ setInterval(() => {
   animateBubble(...addBubble(leftSource));
   animateBubble(...addBubble(midSource))
   animateBubble(...addBubble(rightSource))
-}, 10)
+}, 100)
 
 function addBubble(source) {
   let radius = getRandomRadius();
@@ -31,6 +31,7 @@ function animateBubble(bubble, xShift) {
   let points = getPoints(xShift);
   let path = getPath(points);
   bubble.transition().duration(sToMs(getRandomTime())).attrTween('transform', translateAlongPath(path.node())).remove();
+  path.remove();
 }
 
 function getPath(points) {
@@ -62,6 +63,7 @@ function getPoints(xShift) {
   ]
   points.push(...[
     [xShift, -55],
+    [xShift, -90],
   ])
   return points;
 }
