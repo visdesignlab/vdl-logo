@@ -1,9 +1,21 @@
 .background-color {
-  fill: #eee
+  fill: #fff;
 }
 
 .inner-border {
   fill: none;
   stroke: black;
-  stroke-width: 0.1
+  stroke-width: 0.1;
+}
+
+.left-color {
+  fill: #c03a2b;
+}
+
+.mid-color {
+  fill: #e64c3c;
+}
+
+.right-color {
+  fill: #e66558;
 }
