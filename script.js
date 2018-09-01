@@ -3,52 +3,42 @@ let midSource = d3.select('.mid-source');
 let rightSource = d3.select('.right-source');
 
 setInterval(() => {
-  animateBubble(...addBubble(leftSource), 'left');
-  animateBubble(...addBubble(midSource), 'mid')
-  animateBubble(...addBubble(rightSource), 'right')
-}, 2000)
+  animateBubble(...addBubble(leftSource));
+  animateBubble(...addBubble(midSource))
+  animateBubble(...addBubble(rightSource))
+}, 10)
 
 function addBubble(source) {
   let radius = getRandomRadius();
   let xShift = shiftRandom(radius);
-  return [source.append('circle').attr('r', radius).attr('transform', `translate(${xShift}, 0)`), xShift];
+  return [source.append('circle').classed("bubble", true).attr('r', radius).attr('transform', `translate(${xShift}, 0)`), xShift];
 }
 
 function getRandomRadius() {
-  let a = Math.random();
-  while (a * 10 < 0.5 && a * 10 > 5) {
-    a = Math.random();
-  }
-  return a * 5;
+  return randomFloatInRange(0.5, 3)
 }
 
 function shiftRandom(radius) {
-  let pos = Math.random() > 0.5;
-  let a = Math.random() * 10;
-  while (a > 5 && a < 1) {
-    a = Math.random() * 10;
+  let a = randomFloatInRange(-5, 5);
+  if (Math.abs(a) + radius > 5) {
+    if (a < 0) a = a + radius;
+    else a = a - radius;
   }
-  if (pos)
-    return a - radius * 2;
-  return -a + radius * 2;
+  return a;
 }
 
-function animateBubble(bubble, xShift, position) {
-  let points = getPoints(position, xShift);
-  let path = getPath(points, position);
+function animateBubble(bubble, xShift) {
+  let points = getPoints(xShift);
+  let path = getPath(points);
   bubble.transition().duration(sToMs(getRandomTime())).attrTween('transform', translateAlongPath(path.node())).remove();
 }
 
-function getPath(points, location) {
-  return d3.select('svg').append('path').attr('class', `random-path ${location}`).datum(points).attr('d', d3.line().x(d => d[0]).y(d => d[1]).curve(d3.curveBasis))
+function getPath(points) {
+  return d3.select('svg').append('path').attr('class', `random-path `).datum(points).attr('d', d3.line().x(d => d[0]).y(d => d[1]).curve(d3.curveBasis))
 }
 
 function getRandomTime() {
-  let a = Math.random() * 10;
-  while (a < 10 && a > 15) {
-    a = Math.random() * 10;
-  }
-  return a;
+  return randomFloatInRange(10, 15)
 }
 
 function sToMs(s) {
@@ -65,22 +55,17 @@ function translateAlongPath(path) {
   }
 }
 
-function getPoints(position, xShift) {
+function getPoints(xShift) {
   let points = [
     [xShift, 0],
-    [xShift, -50],
+    [xShift, -40],
   ]
-  // points.push(...[
-  //   [0, -30 / 2],
-  //   [3, -60 / 2],
-  //   [40 / 2, -50 / 2],
-  //   [50 / 2, -80 / 2],
-  //   [40 / 2, -50 / 2],
-  //   [20 / 2, -60 / 2],
-  //   [30 / 2, -70 / 2],
-  //   [50 / 2, -80 / 2],
-  //   [80 / 2, -90 / 2],
-  //   [10 / 2, -100 / 2],
-  // ])
+  points.push(...[
+    [xShift, -55],
+  ])
   return points;
+}
+
+function randomFloatInRange(min, max) {
+  return Math.random() * (max - min) + min;
 }

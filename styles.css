@@ -23,3 +23,8 @@
 .random-path {
   fill: none;
 }
+
+.bubble {
+  stroke: black;
+  stroke-width: 0.01
+}
