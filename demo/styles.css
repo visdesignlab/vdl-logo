@@ -1,0 +1,30 @@
+.background-color {
+  fill: #fff;
+}
+
+.inner-border {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.1;
+}
+
+.left-color {
+  fill: #c03a2b;
+}
+
+.mid-color {
+  fill: #e64c3c;
+}
+
+.right-color {
+  fill: #e66558;
+}
+
+.random-path {
+  fill: none;
+}
+
+.bubble {
+  stroke: black;
+  stroke-width: 0.01
+}
