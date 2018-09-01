@@ -9,19 +9,28 @@ setInterval(() => {
 }, 2000)
 
 function addBubble(source) {
-  let xShift = shiftRandom();
-  return [source.append('circle').attr('r', 1).attr('transform', `translate(${xShift}, 0)`), xShift];
+  let radius = getRandomRadius();
+  let xShift = shiftRandom(radius);
+  return [source.append('circle').attr('r', radius).attr('transform', `translate(${xShift}, 0)`), xShift];
 }
 
-function shiftRandom() {
+function getRandomRadius() {
+  let a = Math.random();
+  while (a * 10 < 0.5 && a * 10 > 5) {
+    a = Math.random();
+  }
+  return a * 5;
+}
+
+function shiftRandom(radius) {
   let pos = Math.random() > 0.5;
   let a = Math.random() * 10;
   while (a > 5 && a < 1) {
     a = Math.random() * 10;
   }
   if (pos)
-    return a;
-  return -a;
+    return a - radius * 2;
+  return -a + radius * 2;
 }
 
 function animateBubble(bubble, xShift, position) {
@@ -58,19 +67,20 @@ function translateAlongPath(path) {
 
 function getPoints(position, xShift) {
   let points = [
-    [xShift, 0]
+    [xShift, 0],
+    [xShift, -50],
   ]
-  points.push(...[
-    [0, -30 / 2],
-    [3, -60 / 2],
-    [40 / 2, -50 / 2],
-    [50 / 2, -80 / 2],
-    [40 / 2, -50 / 2],
-    [20 / 2, -60 / 2],
-    [30 / 2, -70 / 2],
-    [50 / 2, -80 / 2],
-    [80 / 2, -90 / 2],
-    [10 / 2, -100 / 2],
-  ])
+  // points.push(...[
+  //   [0, -30 / 2],
+  //   [3, -60 / 2],
+  //   [40 / 2, -50 / 2],
+  //   [50 / 2, -80 / 2],
+  //   [40 / 2, -50 / 2],
+  //   [20 / 2, -60 / 2],
+  //   [30 / 2, -70 / 2],
+  //   [50 / 2, -80 / 2],
+  //   [80 / 2, -90 / 2],
+  //   [10 / 2, -100 / 2],
+  // ])
   return points;
 }
