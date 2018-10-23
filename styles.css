@@ -5,7 +5,7 @@
 .inner-border {
   fill: none;
   stroke: black;
-  stroke-width: 0.1;
+  stroke-width: 1.5px;
 }
 
 .left-color {
@@ -27,4 +27,8 @@
 .bubble {
   stroke: black;
   stroke-width: 0.01
+}
+
+.background {
+  stroke: white;
 }
