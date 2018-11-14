@@ -40,7 +40,7 @@ function run() {
   }
 
   function getRandomRadius() {
-    return randomFloatInRange(0.75, 2)
+    return randomFloatInRange(0.5, 2)
   }
 
   function shiftRandom(radius) {
