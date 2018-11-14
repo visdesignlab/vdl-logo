@@ -39,4 +39,5 @@ g {
 
 .background {
   stroke: white;
+  stroke-width: 4px;
 }

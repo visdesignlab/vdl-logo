@@ -3,7 +3,7 @@ svgString().then(logo => {
   run();
 });
 
-function run(){
+function run() {
   let leftSource = d3.select('.left-source');
   let midSource = d3.select('.mid-source');
   let rightSource = d3.select('.right-source');
@@ -12,21 +12,26 @@ function run(){
 
   let staticBubbles = d3.selectAll('.static-circles');
 
-    d3.select('svg').on('mouseover', () => {
+  // setTimeout(() => {
+  //   d3.selectAll('*').transition();
+  //   clearInterval(loop);
+  // }, 5000)
+
+  d3.select('svg').on('mouseover', () => {
+    animateBubble(...addBubble(leftSource), 'left');
+    animateBubble(...addBubble(midSource), 'mid');
+    animateBubble(...addBubble(rightSource), 'right');
+    loop = setInterval(() => {
       animateBubble(...addBubble(leftSource), 'left');
       animateBubble(...addBubble(midSource), 'mid');
       animateBubble(...addBubble(rightSource), 'right');
-      loop = setInterval(() => {
-        animateBubble(...addBubble(leftSource), 'left');
-        animateBubble(...addBubble(midSource), 'mid');
-        animateBubble(...addBubble(rightSource), 'right');
-      }, 200);
-      staticBubbles.transition().duration(11000).attr('transform', `translate(0, -100)`).style('opacity', 0);
-    }).on('mouseout', () => {
-      clearInterval(loop);
-      staticBubbles.transition().duration(0).attr('transform', `translate(0, 100)`);
-      staticBubbles.transition().duration(5000).attr('transform', `translate(0, 0)`).style('opacity', 1);
-    })
+    }, 100);
+    staticBubbles.transition().duration(8000).attr('transform', `translate(0, -100)`).style('opacity', 0);
+  }).on('mouseout', () => {
+    clearInterval(loop);
+    staticBubbles.transition().duration(0).attr('transform', `translate(0, 50)`);
+    staticBubbles.transition().duration(8000).attr('transform', `translate(0, 0)`).style('opacity', 1);
+  })
 
   function addBubble(source) {
     let radius = getRandomRadius();
@@ -35,7 +40,7 @@ function run(){
   }
 
   function getRandomRadius() {
-    return randomFloatInRange(0.5, 3)
+    return randomFloatInRange(0.75, 2)
   }
 
   function shiftRandom(radius) {
