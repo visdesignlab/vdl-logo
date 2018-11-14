@@ -2,6 +2,14 @@
   fill: #fff;
 }
 
+svg {
+  pointer-events: all
+}
+
+g {
+  pointer-events: none
+}
+
 .inner-border {
   fill: none;
   stroke: black;
